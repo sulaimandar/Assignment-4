@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+const int PRODUCTS = 5;
+const int DAYS = 7;
+void inputSales(int sales[PRODUCTS][DAYS]) {
+    for (int i = 0; i < PRODUCTS; i++) {
+        cout << "Enter sales for Product " << i + 1 <<endl;
+        for (int j = 0; j < DAYS; j++) {
+            cout << " Day " << j + 1;
+            cin >> sales[i][j];
+        }
+    }
+}
+void calculateRevenue(int sales[PRODUCTS][DAYS], int revenue[PRODUCTS]) {
+    for (int i = 0; i < PRODUCTS; i++) {
+        revenue[i] = 0;
+        for (int j = 0; j < DAYS; j++) {
+            revenue[i] += sales[i][j];
+        }
+    }
+}
+        }
+    }
+int main() {
+    int sales[PRODUCTS][DAYS];
+    int revenue[PRODUCTS];
+
+    inputSales(sales);
+    calculateRevenue(sales, revenue);
+    return 0;
+}
