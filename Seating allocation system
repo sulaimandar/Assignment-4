@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+const int ROWS = 5;
+const int SEATS = 5;
+void displaySeats(int seats[ROWS][SEATS]) {
+    cout << "Seat Layout (0 = Empty, 1 = Reserved);
+    for (int i = 0; i < ROWS; i++) {
+        cout << "Row " << i + 1 << ": ";
+        for (int j = 0; j < SEATS; j++) {
+            cout << seats[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void reserveSeat(int seats[ROWS][SEATS]) {
+    int r, s;
+    cout << "Enter row number: ";
+    cin >> r;
+    cout << "Enter seat number: ";
+    cin >> s;
+
+    if (seats[r - 1][s - 1] == 0) {
+        seats[r - 1][s - 1] = 1;
+        cout << "Seat reserved successfully!";
+    } else {
+        cout << "Seat already reserved!";
+    }
+}
+void cancelSeat(int seats[ROWS][SEATS]) {
+    int r, s;
+    cout << "Enter row number: ";
+    cin >> r;
+    cout << "Enter seat number: ";
+    cin >> s;
+
+    if (seats[r - 1][s - 1] == 1) {
+        seats[r - 1][s - 1] = 0;
+        cout << "Seat cancelled successfully!"<<endl;
+    } else {
+        cout << "Seat is already empty!";
+    }
+}
+void menu() {
+    cout << " MENU "<<endl;
+    cout << "1. Display Seats"<<endl;
+    cout << "2. Reserve a Seat"<<endl;
+    cout << "3. Cancel a Seat"<<endl;
+int main() {
+    int seats[ROWS][SEATS] = {0};
+    int choice;
+
+    do {
+        menu();
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                displaySeats(seats);
+                break;
+            case 2:
+                reserveSeat(seats);
+                break;
+            case 3:
+                cancelSeat(seats);
+                break;
+            case 4:
+                countRows(seats);
+                break;
+            case 5:
+                cout << "Exiting program...\n";
+                break;
+            default:
+                cout << "Invalid choice!\n";
+        }
+    } while (choice != 5);
+
+    return 0;
+}
+            
