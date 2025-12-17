@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int rows, cols;
+    cin >> rows >> cols;
+
+    vector<vector<char>> grid(rows, vector<char>(cols));
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> grid[i][j];
+        }
+    }
+
+    int horizontalCount = 0;
+    int verticalCount = 0;
+    string longestWord = "";
+
+ 
+    for (int i = 0; i < rows; i++) {
+        string word = "";
+        for (int j = 0; j < cols; j++) {
+            if (grid[i][j] != '#') {
+                word += grid[i][j];
+            } else {
+                if (word.length() >= 3) {
+                    horizontalCount++;
+                    if (word.length() > longestWord.length())
+                        longestWord = word;
+                }
+                word = "";
+            }
+        }
+        
+        if (word.length() >= 3) {
+            horizontalCount++;
+            if (word.length() > longestWord.length())
+                longestWord = word;
+        }
+    }
+
+    
+    for (int j = 0; j < cols; j++) {
+        string word = "";
+        for (int i = 0; i < rows; i++) {
+            if (grid[i][j] != '#') {
+                word += grid[i][j];
+            } else {
+                if (word.length() >= 3) {
+                    verticalCount++;
+                    if (word.length() > longestWord.length())
+                        longestWord = word;
+                }
+                word = "";
+            }
+        }
+        
+        if (word.length() >= 3) {
+            verticalCount++;
+            if (word.length() > longestWord.length())
+                longestWord = word;
+        }
+    }
+
+    cout << "Horizontal words: " << horizontalCount << endl;
+    cout << "Vertical words: " << verticalCount << endl;
+    cout << "Longest word: " << longestWord << endl;
+
+    return 0;
+}
